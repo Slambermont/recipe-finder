@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-const app_key = '881905b94637ca383422d5f34594d279';
-const app_id = 'fcc1a3cd';
+const APP_KEY = '881905b94637ca383422d5f34594d279';
+const APP_ID = 'fcc1a3cd';
+const API = 'https://api.edamam.com/search?app_id=' + APP_ID + '&app_key=' + APP_KEY;
 
 class Recipes extends Component {
   constructor(props) {
@@ -9,17 +10,24 @@ class Recipes extends Component {
 
     this.state = {
       hits: [],
+      isLoading: false
     };
   }
 
   componentDidMount() {
-    fetch('https://api.edamam.com/search?app_id=' + app_id + '&app_key=' + app_key + '&q=chicken')
+    this.setState({ isLoading: true });
+
+    fetch(API + '&q=chicken')
       .then(response => response.json())
-      .then(data => this.setState({ hits: data.hits }));
+      .then(data => this.setState({ hits: data.hits, isLoading: false }));
   }
 
   render() {
     const hits = this.state.hits;
+
+    if ( this.state.isLoading ) {
+      return <p>Loading...</p>;
+    }
 
     return (
       <div>
