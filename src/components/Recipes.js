@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RecipeList from './RecipeList.js';
 
 const APP_KEY = '881905b94637ca383422d5f34594d279';
 const APP_ID = 'fcc1a3cd';
@@ -31,9 +32,9 @@ class Recipes extends Component {
   }
 
   render() {
-    const hits = this.state.hits;
+    const recipes = this.state.hits;
 
-    if ( error ) {
+    if ( this.state.error ) {
       return <p>{this.state.error.message}</p>;
     }
 
@@ -43,9 +44,7 @@ class Recipes extends Component {
 
     return (
       <div>
-        { hits.map( hit =>
-          <h1>{ hit.recipe.label }</h1>
-        )}
+        <RecipeList results={recipes} />
       </div>
     );
   }
