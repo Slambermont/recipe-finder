@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RecipeAPI } from './components/RecipeAPI.js';
+import { RecipeAPI } from './RecipeAPI.js';
 import RecipeList from './components/RecipeList.js';
 import SearchBar from './components/SearchBar.js';
 import './App.css';
